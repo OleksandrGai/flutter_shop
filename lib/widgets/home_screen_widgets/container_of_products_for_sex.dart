@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ContainerProductsList extends StatefulWidget {
+class ContainerProductsList extends StatelessWidget {
   const ContainerProductsList({super.key});
 
-  @override
-  State<ContainerProductsList> createState() => _ContainerProductsListState();
-}
-
-class _ContainerProductsListState extends State<ContainerProductsList> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,11 +28,9 @@ class _ContainerProductsListState extends State<ContainerProductsList> {
                   ),
                   Text(
                     'Назва продкуту',
-                    style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  Text('Ціна',
-                      style:
-                          TextStyle(fontSize: 8, fontWeight: FontWeight.bold)),
+                  Text('Ціна', style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),
             );

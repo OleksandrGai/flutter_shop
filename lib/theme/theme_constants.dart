@@ -1,13 +1,39 @@
 import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
+  focusColor: Colors.black,
   brightness: Brightness.light,
-  colorScheme: ColorScheme.light(
-    background: Colors.grey.shade200,
-    primary: Colors.black,
-    secondary: Colors.grey.shade200,
+  primaryColor: Colors.black,
+  hintColor: Colors.black,
+  fontFamily: 'Gill Sans',
+  splashColor: Colors.transparent,
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: Colors.white,
+    selectedItemColor: Colors.black,
+    unselectedItemColor: Colors.grey.shade400,
+  ),
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(
+        fontWeight: FontWeight.bold, fontSize: 25, color: Colors.black),
+    displayMedium: TextStyle(
+        fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
+    displaySmall: TextStyle(fontSize: 12, color: Colors.black),
+  ),
+  buttonTheme: ButtonThemeData(
+    focusColor: Colors.black,
+    disabledColor: Colors.grey.shade400,
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    iconColor: Colors.black,
+    focusColor: Colors.grey.shade400,
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.grey.shade400,
+      ),
+    ),
   ),
 );
+
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(

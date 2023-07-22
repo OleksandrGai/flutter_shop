@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/home_screen_widgets/brands_grid_widget.dart';
@@ -12,7 +11,7 @@ class WomenHomeScreen extends StatelessWidget {
     return ListView(
       shrinkWrap: true,
       children: [
-        Image.asset('lib/images/first.jpeg'),
+        Image.asset('lib/images/woman.jpeg'),
         const SizedBox(
           height: 20,
         ),
@@ -21,9 +20,12 @@ class WomenHomeScreen extends StatelessWidget {
           height: 20,
         ),
         ContainerProductsList(),
-        const Text(
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
           'Рекомендовані бренди',
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          style:  Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(
           height: 10,

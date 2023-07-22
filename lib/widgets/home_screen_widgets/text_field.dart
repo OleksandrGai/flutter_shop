@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop_app/widgets/home_screen_widgets/toggle_buttons.dart';
-
 import '../../model/test_data.dart';
 import '../../networking/products_api.dart';
-import '../../screenc/home_screen_directory/woman_home_screen.dart';
-
 class HomeTextFieldWidget extends StatefulWidget {
   const HomeTextFieldWidget({super.key});
-
   @override
   State<HomeTextFieldWidget> createState() => _HomeTextFieldWidgetState();
 }
@@ -40,10 +35,10 @@ class _HomeTextFieldWidgetState extends State<HomeTextFieldWidget> {
         TextField(
           controller: _controller,
           onChanged: updateList,
-          decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.search_outlined),
-              suffixIcon: Icon(Icons.camera_alt_outlined)),
-        ),
+          decoration:  InputDecoration(
+              prefixIcon: Icon(Icons.search_outlined,color: Theme.of(context).inputDecorationTheme.focusColor,),
+              suffixIcon: Icon(Icons.camera_alt_outlined,color: Theme.of(context).inputDecorationTheme.focusColor),),
+       cursorColor: Colors.grey.shade400 ),
         const SizedBox(
           height: 15,
         ),
