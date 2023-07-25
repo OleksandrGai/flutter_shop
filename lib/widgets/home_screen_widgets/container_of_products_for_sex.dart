@@ -8,7 +8,7 @@ class ContainerProductsList extends StatelessWidget {
     return Container(
       //color: Colors.red,
       height: 150,
-      width: 100,
+      width: double.infinity,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           // shrinkWrap: true,

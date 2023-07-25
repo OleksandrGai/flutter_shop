@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../model/test_data.dart';
+import '../../model/products_data.dart';
 
 class HomeSearchListWidget extends StatelessWidget {
   HomeSearchListWidget({super.key, required this.productsTypeList});
@@ -14,7 +14,7 @@ class HomeSearchListWidget extends StatelessWidget {
           itemCount: productsTypeList.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: Text(productsTypeList[index].type),
+              title: Text(productsTypeList[index].typeOfProducts),
             );
           }),
     );
