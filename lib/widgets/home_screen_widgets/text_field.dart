@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../model/products_data.dart';
-import '../../networking/products_api.dart';
 
+/*
 class HomeTextFieldWidget extends StatefulWidget {
   const HomeTextFieldWidget({super.key});
 
@@ -35,6 +34,29 @@ class _HomeTextFieldWidgetState extends State<HomeTextFieldWidget> {
     return TextField(
         controller: _controller,
         onChanged: updateList,
+        decoration: InputDecoration(
+          prefixIcon: Icon(
+            Icons.search_outlined,
+            color: Theme.of(context).inputDecorationTheme.focusColor,
+          ),
+          suffixIcon: Icon(Icons.camera_alt_outlined,
+              color: Theme.of(context).inputDecorationTheme.focusColor),
+        ),
+        cursorColor: Colors.grey.shade400);
+  }
+}
+ */
+class HomeTextFieldWidget extends StatelessWidget {
+  const HomeTextFieldWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    void navigationToSearchScreen() {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/searchScreen', (route) => false);
+    }
+
+    return TextField(
         decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.search_outlined,

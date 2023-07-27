@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../navigation/navigation_bar.dart';
 
 import '../../widgets/home_screen_widgets/text_field.dart';
 import '../../widgets/home_screen_widgets/sex_tab_bar.dart';
+import '../search_screen_directory/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,7 +10,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const MainBottomBarNavigation(),
       body: SafeArea(
         child: Column(
           children: [
@@ -25,6 +24,13 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+            TextButton(
+                onPressed: () {
+
+                   Navigator.pushAndRemoveUntil(context,
+                      MaterialPageRoute(builder: (_) => SearchScreen()), ModalRoute.withName('/searchScreen'));
+                },
+                child: Text('tab'))
           ],
         ),
       ),
