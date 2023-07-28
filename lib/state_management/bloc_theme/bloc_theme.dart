@@ -1,20 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-class ThemeCubit extends Cubit<ThemeData> {
-  ThemeCubit()
-      : super(
-          appThemeDate[AppTheme.light]!,
-        );
-
-  void themeChange() {
-    emit(
-      state == appThemeDate[AppTheme.light]!
-          ? appThemeDate[AppTheme.dark]!
-          : appThemeDate[AppTheme.light]!,
+class BlocTheme extends Bloc<BlocThemeTabEvent, ThemeData> {
+  BlocTheme() : super(appThemeDate[AppTheme.light]!) {
+    on<BlocThemeTabEvent>(
+      (event, emit) => emit(
+        state == appThemeDate[AppTheme.light]!
+            ? appThemeDate[AppTheme.dark]!
+            : appThemeDate[AppTheme.light]!,
+      ),
     );
   }
 }
+
+class BlocThemeTabEvent {}
 
 enum AppTheme {
   light,

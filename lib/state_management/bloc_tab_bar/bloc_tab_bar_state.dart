@@ -5,12 +5,3 @@ class TabBarState {
 
   TabBarState({required this.index});
 }
-
-class TabBarInitialState extends TabBarState {
-  TabBarInitialState({required super.index});
-
-}
-
-class TabBarSexState extends TabBarState {
-  TabBarSexState({required super.index});
-}

@@ -1,6 +1,6 @@
 import 'package:flutter_shop_app/model/products_data.dart';
 
-List<TestProducts> listOfCategories = [
+List<Products> listOfCategories = [
   TestProducts('Взуття'),
   TestProducts('Футболки'),
   TestProducts('Штани'),

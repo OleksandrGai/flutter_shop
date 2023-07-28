@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../widgets/home_screen_widgets/text_field.dart';
-import '../../widgets/home_screen_widgets/sex_tab_bar.dart';
-import '../search_screen_directory/search_screen.dart';
+import '../../widgets/home_screen_widgets/consumer_tab_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,27 +18,13 @@ class HomeScreen extends StatelessWidget {
             Flexible(
               child: ListView(
                 children: const [
-                  SexTabBar(),
+                  ConsumerTabBar(),
                 ],
               ),
             ),
-            TextButton(
-                onPressed: () {
-
-                   Navigator.pushAndRemoveUntil(context,
-                      MaterialPageRoute(builder: (_) => SearchScreen()), ModalRoute.withName('/searchScreen'));
-                },
-                child: Text('tab'))
           ],
         ),
       ),
     );
   }
 }
-
-// TextButton(
-//     onPressed: () {
-//       final cubit = context.read<ThemeCubit>();
-//       cubit.themeChange();
-//     },
-//     child: Text('jjj')),
