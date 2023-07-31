@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_shop_app/screens/search_screen_directory/search_screen.dart';
 
-import 'package:flutter_shop_app/state_management/bloc_tab_bar/bloc_tab_bar.dart';
 import 'package:flutter_shop_app/state_management/bloc_theme/bloc_theme.dart';
 
 import 'navigation/navigation_bar.dart';
