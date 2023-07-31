@@ -3,7 +3,7 @@ import 'package:flutter_shop_app/screens/home_screen_directory/home_screen.dart'
 
 import '../screens/basket_screen_directory/basket_screen.dart';
 import '../screens/favorits_screen_directory/favorite_screen.dart';
-import '../screens/list_of_categories_screen_directory/list_of_categories_sreen.dart';
+import '../screens/list_of_categories_screen_directory/list_of_categories_screen.dart';
 import '../screens/person_screen_directory/person_screen.dart';
 import '../screens/search_screen_directory/search_screen.dart';
 
