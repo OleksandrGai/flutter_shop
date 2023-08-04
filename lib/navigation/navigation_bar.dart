@@ -55,12 +55,13 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: <Widget>[
-        _buildOffstageNavigator(0),
-        _buildOffstageNavigator(1),
-        _buildOffstageNavigator(2),
-        _buildOffstageNavigator(3),
-        _buildOffstageNavigator(4),
-        _buildOffstageNavigator(5),
+        for (int index = 0; index < 6; index++)
+          Offstage(
+            offstage: _currentIndex != index,
+            child: TabNavigator(
+              tabIndex: index,
+            ),
+          ),
       ]),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -72,19 +73,15 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
       ),
     );
   }
-
-  Widget _buildOffstageNavigator(int tabItem) {
-    return Offstage(
-      offstage: _currentIndex != tabItem,
-      child: TabNavigator(
-        tabIndex: tabItem,
-      ),
-    );
-  }
 }
 
 class TabNavigatorRoutes {
-  static const String root = '/';
+  static String homeScreen = '/';
+  static String listScreen = '/listScreen';
+  static String searchScreen = '/searchScreen';
+  static String favoriteScreen = '/favoriteScreen';
+  static String basketScreen = '/basketScreen';
+  static String personScreen = '/personScreen';
 }
 
 class TabNavigator extends StatelessWidget {
@@ -93,8 +90,14 @@ class TabNavigator extends StatelessWidget {
   final int tabIndex;
 
   Map<String, WidgetBuilder> _routeBuilders(BuildContext context) {
+  //  print(tabIndex);
     return {
-      TabNavigatorRoutes.root: (context) => _getScreen(context, tabIndex)
+      TabNavigatorRoutes.homeScreen: (context) => _getScreen(tabIndex),
+      TabNavigatorRoutes.listScreen: (context) => _getScreen(tabIndex),
+      TabNavigatorRoutes.searchScreen: (context) => _getScreen(tabIndex),
+      TabNavigatorRoutes.favoriteScreen: (context) => _getScreen(tabIndex),
+      TabNavigatorRoutes.basketScreen: (context) => _getScreen(tabIndex),
+      TabNavigatorRoutes.personScreen: (context) => _getScreen(tabIndex),
     };
   }
 
@@ -102,17 +105,20 @@ class TabNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     final routeBuilders = _routeBuilders(context);
     return Navigator(
-      initialRoute: TabNavigatorRoutes.root,
+      initialRoute: TabNavigatorRoutes.homeScreen,
       onGenerateRoute: (routeSettings) {
+
         return MaterialPageRoute(
-          settings: const RouteSettings(name: TabNavigatorRoutes.root),
-          builder: (context) => routeBuilders[routeSettings.name]!(context),
+          settings: routeSettings,
+          builder: (context) {
+            return routeBuilders[routeSettings.name]!(context);
+          },
         );
       },
     );
   }
 
-  _getScreen(BuildContext context, int item) {
+  _getScreen(int item) {
     switch (item) {
       case 0:
         return const HomeScreen();
@@ -131,3 +137,54 @@ class TabNavigator extends StatelessWidget {
     }
   }
 }
+
+// class TabNavigatorRoutes {
+//   int? rootIndex;
+//
+//   String get root => rootIndex.toString();
+// }
+//
+// class TabNavigator extends StatelessWidget {
+//   const TabNavigator({super.key, required this.tabIndex});
+//
+//   final int tabIndex;
+//
+//   Map<String, WidgetBuilder> _routeBuilders(BuildContext context) {
+//
+//     return {TabNavigatorRoutes().root: (context) => _getScreen(tabIndex)};
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final routeBuilders = _routeBuilders(context);
+//     return Navigator(
+//       initialRoute: TabNavigatorRoutes().root,
+//       onGenerateRoute: (routeSettings) {
+//         print(TabNavigatorRoutes().rootIndex);
+//         return MaterialPageRoute(
+//           settings: routeSettings,
+//           builder: (context) => routeBuilders[routeSettings.name]!(context),
+//         );
+//       },
+//     );
+//   }
+//
+//   _getScreen(int item) {
+//     switch (item) {
+//       case 0:
+//         return const HomeScreen();
+//       case 1:
+//         return const ListOfCategoriesScreen();
+//       case 2:
+//         return const SearchScreen();
+//       case 3:
+//         return const FavoriteScreen();
+//       case 4:
+//         return const BasketScreen();
+//       case 5:
+//         return const PersonScreen();
+//       default:
+//         return const Scaffold();
+//     }
+//   }
+// }
