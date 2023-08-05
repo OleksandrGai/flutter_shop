@@ -6,12 +6,10 @@ class ContainerProductsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //color: Colors.red,
       height: 150,
-      width: 100,
+      width: double.infinity,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          // shrinkWrap: true,
           itemCount: 12,
           itemBuilder: (context, index) {
             return Container(

@@ -1,37 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop_app/screenc/home_screen_directory/home_screen.dart';
-import 'package:flutter_shop_app/theme/theme_notifier.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:flutter_shop_app/state_management/bloc_theme/bloc_theme.dart';
+
+import 'navigation/navigation_bar.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider<ThemeProvider>(
-      create: (context) => ThemeProvider(isDarkTheme: false),
-      child: const HomeScreen()));
+  runApp(const MyApp());
 }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer<ThemeProvider>(
-//       builder: (context, value, child) {
-//         return MaterialApp(
-//           theme: value.getTheme,
-//           home: SafeArea(
-//             child: Scaffold(
-//               body: Center(
-//                 child: TextButton(
-//                   child: const Text('tab'),
-//                   onPressed: () {
-//                     value.swapTheme();
-//                   },
-//                 ),
-//               ),
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<BlocTheme>(
+      create: (_) => BlocTheme(),
+      child: BlocBuilder<BlocTheme, ThemeData>(builder: (context, state) {
+        return MaterialApp(
+          theme: state,
+          home: const MainBottomBarNavigation(),
+        );
+      }),
+    );
+  }
+}
