@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/search_screen_widgets/text_field_search_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -7,9 +8,8 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Text('Search Screen'),
-        ),
+        child:
+        SingleChildScrollView(child: TextFieldSearchScreen()),
       ),
     );
   }
