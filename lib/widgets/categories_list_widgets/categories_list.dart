@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../model/products_data.dart';
 
-class ListOfCategories extends StatelessWidget {
-  ListOfCategories({super.key});
+class CategoriesList extends StatelessWidget {
+  CategoriesList({super.key});
 
   final List<Products> _productsCategory = [
     TestProducts('Новинки'),

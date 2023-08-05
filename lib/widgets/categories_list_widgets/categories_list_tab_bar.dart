@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_shop_app/widgets/list_of_categories_widgets/list_of_categories.dart';
+import 'package:flutter_shop_app/widgets/categories_list_widgets/categories_list.dart';
 
 import '../../state_management/bloc_tab_bar/bloc_tab_bar.dart';
 
-class ListOfCategoriesTabBar extends StatelessWidget {
-  const ListOfCategoriesTabBar({super.key});
+class CategoriesListTabBar extends StatelessWidget {
+  const CategoriesListTabBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +35,9 @@ class ListOfCategoriesTabBar extends StatelessWidget {
                 height: 700,
                 child: TabBarView(
                   children: [
-                    ListOfCategories(),
-                    ListOfCategories(),
-                    ListOfCategories()
+                    CategoriesList(),
+                    CategoriesList(),
+                    CategoriesList()
                   ],
                 ),
               ),

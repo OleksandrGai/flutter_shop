@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/list_of_categories_widgets/list_of_categories_tab_bar.dart';
+import '../../widgets/categories_list_widgets/categories_list_tab_bar.dart';
 
-class ListOfCategoriesScreen extends StatelessWidget {
-  const ListOfCategoriesScreen({super.key});
+
+
+class CategoriesListScreen extends StatelessWidget {
+  const CategoriesListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class ListOfCategoriesScreen extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(left: 14, right: 14),
-              child: ListOfCategoriesTabBar(),
+              child: CategoriesListTabBar(),
             ),
           ],
         ),

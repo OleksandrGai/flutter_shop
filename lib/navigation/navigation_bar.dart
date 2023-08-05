@@ -3,7 +3,7 @@ import 'package:flutter_shop_app/screens/home_screen_directory/home_screen.dart'
 
 import '../screens/basket_screen_directory/basket_screen.dart';
 import '../screens/favorits_screen_directory/favorite_screen.dart';
-import '../screens/list_of_categories_screen_directory/list_of_categories_screen.dart';
+import '../screens/list_of_categories_screen_directory/categories_list_screen.dart';
 import '../screens/person_screen_directory/person_screen.dart';
 import '../screens/search_screen_directory/search_screen.dart';
 
@@ -117,7 +117,7 @@ class TabNavigator extends StatelessWidget {
       case 0:
         return const HomeScreen();
       case 1:
-        return const ListOfCategoriesScreen();
+        return const CategoriesListScreen();
       case 2:
         return const SearchScreen();
       case 3:
