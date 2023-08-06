@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BasketScreen extends StatelessWidget {
+
+  static const String routeName = '/basketScreen';
+
   const BasketScreen({super.key});
 
   @override

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ListOfCategoriesScreen extends StatelessWidget {
+
+  static const String routeName = '/listScreen';
+
   const ListOfCategoriesScreen({super.key});
 
   @override

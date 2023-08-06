@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PersonScreen extends StatelessWidget {
+
+  static const String routeName = '/personScreen';
+
   const PersonScreen({super.key});
 
   @override
