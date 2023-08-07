@@ -1,19 +1,32 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-class BlocTheme extends Bloc<BlocThemeTabEvent, ThemeData> {
-  BlocTheme() : super(appThemeDate[AppTheme.light]!) {
-    on<BlocThemeTabEvent>(
+class SwitchThemeBloc extends Bloc<SwitchThemeEvent, SwitchThemeState> {
+  SwitchThemeBloc() : super(SwitchThemeState(switchValue: false)) {
+    on<SwitchOnDarkThemeEvent>(
       (event, emit) => emit(
-        state == appThemeDate[AppTheme.light]!
-            ? appThemeDate[AppTheme.dark]!
-            : appThemeDate[AppTheme.light]!,
+        SwitchThemeState(switchValue: true),
+      ),
+    );
+    on<SwitchOffDarkThemeEvent>(
+      (event, emit) => emit(
+        SwitchThemeState(switchValue: false),
       ),
     );
   }
 }
 
-class BlocThemeTabEvent {}
+class SwitchThemeEvent {}
+
+class SwitchOnDarkThemeEvent extends SwitchThemeEvent {}
+
+class SwitchOffDarkThemeEvent extends SwitchThemeEvent {}
+
+class SwitchThemeState {
+  SwitchThemeState({required this.switchValue});
+
+  final bool switchValue;
+}
 
 enum AppTheme {
   light,
@@ -35,10 +48,10 @@ final Map<AppTheme, ThemeData> appThemeDate = {
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 25, color: Colors.black),
+          fontWeight: FontWeight.bold, fontSize: 35, color: Colors.black),
       displayMedium: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
-      displaySmall: TextStyle(fontSize: 12, color: Colors.black),
+          fontWeight: FontWeight.bold, fontSize: 30, color: Colors.black),
+      displaySmall: TextStyle(fontSize: 15, color: Colors.black),
     ),
     buttonTheme: ButtonThemeData(
       focusColor: Colors.black,
