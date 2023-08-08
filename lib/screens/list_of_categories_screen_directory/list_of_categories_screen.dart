@@ -4,8 +4,8 @@ import '../../widgets/categories_list_widgets/categories_list_tab_bar.dart';
 
 
 
-class CategoriesListScreen extends StatelessWidget {
-  const CategoriesListScreen({super.key});
+class ListOfCategoriesScreen extends StatelessWidget {
+  const ListOfCategoriesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
