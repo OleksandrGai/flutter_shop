@@ -6,6 +6,7 @@ import '../../widgets/categories_list_widgets/categories_list_tab_bar.dart';
 
 class ListOfCategoriesScreen extends StatelessWidget {
   const ListOfCategoriesScreen({super.key});
+  static const String routeName = '/listScreen';
 
   @override
   Widget build(BuildContext context) {

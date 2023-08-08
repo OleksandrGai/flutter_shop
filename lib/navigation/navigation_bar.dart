@@ -17,6 +17,17 @@ class MainBottomBarNavigation extends StatefulWidget {
 class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
   var _currentIndex = 0;
 
+  late final _routingWidgetBuilderMap = <String, WidgetBuilder>{
+    HomeScreen.routeName: (_) => HomeScreen(onSearchClicked: onSearchClicked,),
+    ListOfCategoriesScreen.routeName: (_) => const ListOfCategoriesScreen(),
+    SearchScreen.routeName: (_) => const SearchScreen(),
+    FavoriteScreen.routeName: (_) => const FavoriteScreen(),
+    BasketScreen.routeName: (_) => const BasketScreen(),
+    PersonScreen.routeName: (_) => const PersonScreen(),
+  };
+
+  void onSearchClicked() => _userTab(2);
+
   void _userTab(int userTab) {
     if (userTab == _currentIndex) return;
     setState(() => _currentIndex = userTab);
@@ -54,14 +65,16 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: <Widget>[
-        _buildOffstageNavigator(0),
-        _buildOffstageNavigator(1),
-        _buildOffstageNavigator(2),
-        _buildOffstageNavigator(3),
-        _buildOffstageNavigator(4),
-        _buildOffstageNavigator(5),
-      ]),
+      body: NavigableStack(
+        selectedIndex: _currentIndex,
+        initialRoutes: _routingWidgetBuilderMap.keys.toList(),
+        onGenerateRoute: (settings) {
+          return MaterialPageRoute(
+            builder: _routingWidgetBuilderMap[settings.name] ?? (_) => Container(),
+          );
+        },
+
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
@@ -72,62 +85,31 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
       ),
     );
   }
-
-  Widget _buildOffstageNavigator(int tabItem) {
-    return Offstage(
-      offstage: _currentIndex != tabItem,
-      child: TabNavigator(
-        tabIndex: tabItem,
-      ),
-    );
-  }
 }
 
-class TabNavigatorRoutes {
-  static const String root = '/';
-}
+class NavigableStack extends StatelessWidget {
+  const NavigableStack({
+    super.key,
+    required this.initialRoutes,
+    required this.onGenerateRoute,
+    required this.selectedIndex,
+  });
 
-class TabNavigator extends StatelessWidget {
-  const TabNavigator({super.key, required this.tabIndex});
-
-  final int tabIndex;
-
-  Map<String, WidgetBuilder> _routeBuilders(BuildContext context) {
-    return {
-      TabNavigatorRoutes.root: (context) => _getScreen(context, tabIndex)
-    };
-  }
+  final List<String> initialRoutes;
+  final RouteFactory onGenerateRoute;
+  final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
-    final routeBuilders = _routeBuilders(context);
-    return Navigator(
-      initialRoute: TabNavigatorRoutes.root,
-      onGenerateRoute: (routeSettings) {
-        return MaterialPageRoute(
-          settings: const RouteSettings(name: TabNavigatorRoutes.root),
-          builder: (context) => routeBuilders[routeSettings.name]!(context),
-        );
-      },
+    return IndexedStack(
+      index: selectedIndex,
+      children: [
+        for (final initialRoute in initialRoutes)
+          Navigator(
+            initialRoute: initialRoute,
+            onGenerateRoute: onGenerateRoute,
+          ),
+      ],
     );
-  }
-
-  _getScreen(BuildContext context, int item) {
-    switch (item) {
-      case 0:
-        return const HomeScreen();
-      case 1:
-        return const ListOfCategoriesScreen();
-      case 2:
-        return const SearchScreen();
-      case 3:
-        return const FavoriteScreen();
-      case 4:
-        return const BasketScreen();
-      case 5:
-        return const PersonScreen();
-      default:
-        return const Scaffold();
-    }
   }
 }

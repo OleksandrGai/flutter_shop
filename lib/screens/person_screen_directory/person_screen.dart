@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shop_app/state_management/bloc_theme/bloc_theme.dart';
 
 class PersonScreen extends StatelessWidget {
+
+  static const String routeName = '/personScreen';
+
   const PersonScreen({super.key});
 
   @override
