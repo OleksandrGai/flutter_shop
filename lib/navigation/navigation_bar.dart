@@ -7,15 +7,6 @@ import '../screens/list_of_categories_screen_directory/list_of_categories_sreen.
 import '../screens/person_screen_directory/person_screen.dart';
 import '../screens/search_screen_directory/search_screen.dart';
 
-final _routingWidgetBuilderMap = <String, WidgetBuilder>{
-  HomeScreen.routeName: (_) => const HomeScreen(),
-  ListOfCategoriesScreen.routeName: (_) => const ListOfCategoriesScreen(),
-  SearchScreen.routeName: (_) => const SearchScreen(),
-  FavoriteScreen.routeName: (_) => const FavoriteScreen(),
-  BasketScreen.routeName: (_) => const BasketScreen(),
-  PersonScreen.routeName: (_) => const PersonScreen(),
-};
-
 class MainBottomBarNavigation extends StatefulWidget {
   const MainBottomBarNavigation({super.key});
 
@@ -25,6 +16,17 @@ class MainBottomBarNavigation extends StatefulWidget {
 
 class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
   var _currentIndex = 0;
+
+  late final _routingWidgetBuilderMap = <String, WidgetBuilder>{
+    HomeScreen.routeName: (_) => HomeScreen(onSearchClicked: onSearchClicked,),
+    ListOfCategoriesScreen.routeName: (_) => const ListOfCategoriesScreen(),
+    SearchScreen.routeName: (_) => const SearchScreen(),
+    FavoriteScreen.routeName: (_) => const FavoriteScreen(),
+    BasketScreen.routeName: (_) => const BasketScreen(),
+    PersonScreen.routeName: (_) => const PersonScreen(),
+  };
+
+  void onSearchClicked() => _userTab(2);
 
   void _userTab(int userTab) {
     if (userTab == _currentIndex) return;
@@ -71,6 +73,7 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
             builder: _routingWidgetBuilderMap[settings.name] ?? (_) => Container(),
           );
         },
+
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -105,7 +108,6 @@ class NavigableStack extends StatelessWidget {
           Navigator(
             initialRoute: initialRoute,
             onGenerateRoute: onGenerateRoute,
-
           ),
       ],
     );

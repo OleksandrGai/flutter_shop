@@ -6,7 +6,9 @@ import '../search_screen_directory/search_screen.dart';
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
 
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.onSearchClicked});
+
+  final VoidCallback onSearchClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +21,7 @@ class HomeScreen extends StatelessWidget {
               child: HomeTextFieldWidget(),
             ),
             TextButton(
-              onPressed: () {
-                // Navigator.pushAndRemoveUntil(
-                //     context,
-                //     MaterialPageRoute(builder: (_) => SearchScreen()),
-                //     ModalRoute.withName('/searchScreen'));
-                // //   final bloc = context.read<BlocTheme>();
-                // //   bloc.add(BlocThemeTabEvent());
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const SearchScreen()));
-                // Navigator.of(context).popUntil((route) => route.isFirst);
-                // Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => SearchScreen()));
-                // Navigator.pushReplacement(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (BuildContext context) => const SearchScreen(),
-                //  ),
-                //);
-              },
+              onPressed: onSearchClicked,
               child: const Text('tab'),
             ),
             Flexible(
