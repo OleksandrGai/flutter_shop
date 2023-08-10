@@ -16,13 +16,10 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 14, right: 14),
-              child: HomeTextFieldWidget(),
-            ),
-            TextButton(
-              onPressed: onSearchClicked,
-              child: const Text('tab'),
+            Padding(
+              padding: const EdgeInsets.only(left: 14, right: 14),
+              child: HomeTextFieldWidget(
+                  onSearchClickedTextField: onSearchClicked),
             ),
             Flexible(
               child: ListView(
