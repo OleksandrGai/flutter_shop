@@ -14,11 +14,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<BlocTheme>(
-      create: (_) => BlocTheme(),
-      child: BlocBuilder<BlocTheme, ThemeData>(builder: (context, state) {
+    return BlocProvider<SwitchThemeBloc>(
+      create: (_) => SwitchThemeBloc(),
+      child: BlocBuilder<SwitchThemeBloc, SwitchThemeState>(
+          builder: (context, state) {
         return MaterialApp(
-          theme: state,
+          theme: state.switchValue
+              ? appThemeDate[AppTheme.dark]
+              : appThemeDate[AppTheme.light],
           home: const MainBottomBarNavigation(),
         );
       }),
