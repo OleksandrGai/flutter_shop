@@ -1,38 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop_app/model/products_data.dart';
 
 class ContainerProductsList extends StatelessWidget {
-  const ContainerProductsList({super.key});
+  const ContainerProductsList({
+    super.key,
+    required this.productsCategory,
+  });
+
+  final List<Products1> productsCategory;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 150,
-      width: double.infinity,
+      width: 120,
       child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 12,
-          itemBuilder: (context, index) {
-            return Container(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Image.asset(
-                      'lib/images/second.jpeg',
-                      height: 110,
-                      width: 110,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Text(
-                    'Назва продкуту',
+        scrollDirection: Axis.horizontal,
+        itemCount: productsCategory.length ~/3,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              Image.network(
+                productsCategory[index].image,
+                height: 120,
+                width: 120,
+                fit: BoxFit.fill,
+              ),
+              Flexible(
+                child: SizedBox(
+                  width: 115,
+                  child: Text(
+                    maxLines: 10,
+                    productsCategory[index].title,
+                    overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  Text('Ціна', style: Theme.of(context).textTheme.bodySmall),
-                ],
+                ),
               ),
-            );
-          }),
+              Text(
+                '${productsCategory![index].price.toString()}\$',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

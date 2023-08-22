@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop_app/networking/products_api.dart';
 import 'package:flutter_shop_app/widgets/categories_list_widgets/categories_list.dart';
 
 import '../../state_management/bloc_tab_bar/bloc_tab_bar.dart';
@@ -14,7 +15,7 @@ class CategoriesListTabBar extends StatelessWidget {
       child: BlocBuilder<TabBarBloc, TabBarState>(builder: (context, state) {
         return DefaultTabController(
           length: 3,
-          initialIndex: state.index,
+          initialIndex: 0,
           child: Column(
             children: [
               Padding(
@@ -26,7 +27,7 @@ class CategoriesListTabBar extends StatelessWidget {
                   indicatorColor: Theme.of(context).unselectedWidgetColor,
                   onTap: (int tabIndex) {
                     context.read<TabBarBloc>().add(
-                          ConsumerTabBarEvent(tabIndex: tabIndex),
+                          WomanTabBarEvent(),
                         );
                   },
                 ),

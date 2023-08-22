@@ -1,7 +1,9 @@
 part of 'bloc_tab_bar.dart';
 
 class TabBarState {
-  final int index;
+  final List<Products1> categoryProducts;
 
-  TabBarState({required this.index});
+  TabBarState({
+    required this.categoryProducts,
+  });
 }
