@@ -19,7 +19,7 @@ class PersonScreen extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            title: Text(AppLocalizations.of(context).myAccount,
+            title: Text(AppLocalizations.of(context)!.myAccount,
                 style: Theme.of(context).textTheme.titleLarge),
           ),
           body: SafeArea(
@@ -37,7 +37,7 @@ class PersonScreen extends StatelessWidget {
                         maximumSize: const Size(300, 50),
                         minimumSize: const Size(260, 50),
                       ),
-                      child: Text(AppLocalizations.of(context).logIn,
+                      child: Text(AppLocalizations.of(context)!.logIn,
                           style: Theme.of(context).textTheme.titleLarge),
                     ),
                     const SizedBox(
@@ -53,7 +53,7 @@ class PersonScreen extends StatelessWidget {
                         minimumSize: const Size(260, 50),
                       ),
                       child: Text(
-                        AppLocalizations.of(context).signUp,
+                        AppLocalizations.of(context)!.signUp,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
@@ -72,18 +72,18 @@ class PersonScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           ExpansionTileWidget(
-                            categoryName: AppLocalizations.of(context).settings,
+                            categoryName: AppLocalizations.of(context)!.settings,
                             icon: Icons.settings,
                             detailsWidget: const SettingsWidget(),
                           ),
                           ExpansionTileWidget(
                             categoryName:
-                                AppLocalizations.of(context).usFullInformation,
+                                AppLocalizations.of(context)!.usFullInformation,
                             icon: Icons.info_outline,
                             detailsWidget: const InformationWidget(),
                           ),
                           ExpansionTileWidget(
-                            categoryName: AppLocalizations.of(context).contacts,
+                            categoryName: AppLocalizations.of(context)!.contacts,
                             icon: Icons.phone,
                             detailsWidget: const ContactsInformationWidget(),
                           ),

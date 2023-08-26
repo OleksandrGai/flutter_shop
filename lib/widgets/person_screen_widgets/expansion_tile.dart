@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shop_app/state_management/bloc_locale/bloc_locale.dart';
+import 'package:flutter_shop_app/state_management/bloc_locale/language.dart';
 import 'package:flutter_shop_app/state_management/bloc_theme/bloc_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -49,7 +50,7 @@ class SettingsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              AppLocalizations.of(context).darkMode,
+              AppLocalizations.of(context)!.darkMode,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(
@@ -83,7 +84,7 @@ class SettingsWidget extends StatelessWidget {
         Row(
           children: [
             Text(
-              AppLocalizations.of(context).language,
+              AppLocalizations.of(context)!.language,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(
@@ -92,8 +93,10 @@ class SettingsWidget extends StatelessWidget {
             TextButton(
               onPressed: () {
                 if (context.read<LanguageBloc>().state.language !=
-                    EnglishLanguageEvent().language) {
-                  context.read<LanguageBloc>().add(EnglishLanguageEvent());
+                    ChangeLanguageEvent(Language.english).language) {
+                  context
+                      .read<LanguageBloc>()
+                      .add(ChangeLanguageEvent(Language.english));
                 }
               },
               style: ButtonStyle(
@@ -111,8 +114,10 @@ class SettingsWidget extends StatelessWidget {
             TextButton(
               onPressed: () {
                 if (context.read<LanguageBloc>().state.language !=
-                    UkraineLanguageEvent().language) {
-                  context.read<LanguageBloc>().add(UkraineLanguageEvent());
+                    ChangeLanguageEvent(Language.ukraine).language) {
+                  context
+                      .read<LanguageBloc>()
+                      .add(ChangeLanguageEvent(Language.ukraine));
                 }
               },
               style: ButtonStyle(
@@ -142,7 +147,7 @@ class InformationWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            AppLocalizations.of(context).shopRules,
+            AppLocalizations.of(context)!.shopRules,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -155,7 +160,7 @@ class InformationWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            AppLocalizations.of(context).aboutShop,
+            AppLocalizations.of(context)!.aboutShop,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -168,7 +173,7 @@ class InformationWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            AppLocalizations.of(context).aboutApp,
+            AppLocalizations.of(context)!.aboutApp,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -191,7 +196,7 @@ class ContactsInformationWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            AppLocalizations.of(context).phone,
+            AppLocalizations.of(context)!.phone,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -204,7 +209,7 @@ class ContactsInformationWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            AppLocalizations.of(context).address,
+            AppLocalizations.of(context)!.address,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
