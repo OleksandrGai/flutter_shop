@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_shop_app/state_management/bloc_locale/language.dart';
+import 'package:flutter_shop_app/state_management/language/bloc_locale/language.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {

@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_shop_app/state_management/bloc_locale/bloc_locale.dart';
+import 'package:flutter_shop_app/state_management/language/bloc_locale/bloc_locale.dart';
+
 
 import 'package:flutter_shop_app/widgets/person_screen_widgets/expansion_tile.dart';
 
