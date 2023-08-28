@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_shop_app/state_management/bloc_theme/bloc_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_shop_app/state_management/language/bloc_locale/bloc_locale.dart';
+import 'package:flutter_shop_app/state_management/language/bloc_locale/language.dart';
 
 class ExpansionTileWidget extends StatelessWidget {
   const ExpansionTileWidget({
@@ -47,7 +51,7 @@ class SettingsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'Темна тема',
+              AppLocalizations.of(context)!.darkMode,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(
@@ -75,35 +79,57 @@ class SettingsWidget extends StatelessWidget {
             ),
           ],
         ),
-        Divider(
+        const Divider(
           thickness: 1,
         ),
         Row(
           children: [
             Text(
-              'Локалізація',
+              AppLocalizations.of(context)!.language,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(
               width: 30,
             ),
             TextButton(
-              child: Text(
+              onPressed: () {
+                if (context.read<LanguageBloc>().state.language !=
+                    ChangeLanguageEvent(Language.english).language) {
+                  context
+                      .read<LanguageBloc>()
+                      .add(ChangeLanguageEvent(Language.english));
+                }
+              },
+              style: ButtonStyle(
+                overlayColor: MaterialStateColor.resolveWith(
+                    (states) => Colors.transparent),
+              ),
+              child: const Text(
                 '🇬🇧',
                 style: TextStyle(fontSize: 50),
               ),
-              onPressed: () {},
             ),
             const SizedBox(
               width: 30,
             ),
             TextButton(
-              child: Text(
+              onPressed: () {
+                if (context.read<LanguageBloc>().state.language !=
+                    ChangeLanguageEvent(Language.ukraine).language) {
+                  context
+                      .read<LanguageBloc>()
+                      .add(ChangeLanguageEvent(Language.ukraine));
+                }
+              },
+              style: ButtonStyle(
+                overlayColor: MaterialStateColor.resolveWith(
+                    (states) => Colors.transparent),
+              ),
+              child: const Text(
                 '🇺🇦',
                 style: TextStyle(fontSize: 50),
               ),
-              onPressed: () {},
-            )
+            ),
           ],
         ),
       ],
@@ -122,33 +148,33 @@ class InformationWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            'Правила магазину',
+            AppLocalizations.of(context)!.shopRules,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         const SizedBox(
           width: 30,
         ),
-        Divider(
+        const Divider(
           thickness: 1,
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            'Про магазин',
+            AppLocalizations.of(context)!.aboutShop,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         const SizedBox(
           width: 30,
         ),
-        Divider(
+        const Divider(
           thickness: 1,
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            'Про додаток',
+            AppLocalizations.of(context)!.aboutApp,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -171,28 +197,26 @@ class ContactsInformationWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            'Телефон',
+            AppLocalizations.of(context)!.phone,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         const SizedBox(
           width: 30,
         ),
-        Divider(
+        const Divider(
           thickness: 1,
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 17, top: 17),
           child: Text(
-            'Адреса',
+            AppLocalizations.of(context)!.address,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         const SizedBox(
           width: 30,
         ),
-
-
       ],
     );
   }
