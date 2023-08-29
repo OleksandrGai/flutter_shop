@@ -14,7 +14,7 @@ class TabBarSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TabBarBloc>(
-      create: (_) => TabBarBloc(),
+      create: (_) => TabBarBloc(ProductsApi()),
       child: BlocBuilder<TabBarBloc, TabBarState>(builder: (context, state) {
         return DefaultTabController(
           length: 3,

@@ -4,6 +4,62 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+abstract class ProductsApi {
+  factory ProductsApi() => _ProductsApiImpl();
+
+  Future<List<Products1>> fetchAllProducts();
+
+  Future<List<Products1>> fetchWomanProducts();
+
+  Future<List<Products1>> fetchManProducts();
+}
+
+class _ProductsApiImpl implements ProductsApi {
+  static const _baseurl = 'https://fakestoreapi.com';
+  static const _typesPath = '/products';
+
+  Future<T> _getRequest<T>(
+    Uri uri,
+    T Function(List<dynamic>) parser,
+  ) async {
+    final response = await http.get(uri);
+    final jsonResp = json.decode(response.body);
+    return parser(jsonResp);
+  }
+
+  @override
+  Future<List<Products1>> fetchAllProducts() async {
+    return _getRequest(Uri.parse('$_baseurl$_typesPath'), (json) {
+      var res = json;
+      return res
+          .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
+          .toList();
+    });
+  }
+
+  @override
+  Future<List<Products1>> fetchManProducts() async {
+    return _getRequest(Uri.parse('$_baseurl$_typesPath'), (json) {
+      var res = json;
+      return res
+          .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
+          .where((category) => category.category == "men's clothing")
+          .toList();
+    });
+  }
+
+  @override
+  Future<List<Products1>> fetchWomanProducts() {
+    return _getRequest(Uri.parse('$_baseurl$_typesPath'), (json) {
+      var res = json;
+      return res
+          .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
+          .where((category) => category.category == "women's clothing")
+          .toList();
+    });
+  }
+}
+
 List<Products> listOfCategories = [
   TestProducts('Взуття'),
   TestProducts('Футболки'),
@@ -21,52 +77,3 @@ List<Products> listOfCategories = [
   TestProducts('Леггинси'),
   TestProducts('Спортивний одяг'),
 ];
-
-Future<List<Products1>> fetchAllProducts() async {
-  String link = 'https://fakestoreapi.com/products';
-  final response = await http.get(Uri.parse(link));
-  if (response.statusCode == 200) {
-    final json = jsonDecode(response.body) as List<dynamic>;
-    return json
-        .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
-        .toList();
-  } else {
-    throw Exception('Failed to load album');
-  }
-}
-
-Future<List<Products1>> fetchWomanProducts() async {
-  String link = 'https://fakestoreapi.com/products';
-  final response = await http.get(Uri.parse(link));
-  if (response.statusCode == 200) {
-    final json = jsonDecode(response.body) as List<dynamic>;
-    List<Products1> productsList = json
-        .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
-        .toList();
-    final List<Products1> womanProducts = productsList
-        .where((category) => category.category == "women's clothing")
-        .toList();
-    return womanProducts;
-  } else {
-    throw Exception('Failed to load album');
-  }
-}
-
-Future<List<Products1>> fetchManProducts() async {
-  String link = 'https://fakestoreapi.com/products';
-  final response = await http.get(Uri.parse(link));
-  if (response.statusCode == 200) {
-    final json = jsonDecode(response.body) as List<dynamic>;
-    List<Products1> productsList = json
-        .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
-        .toList();
-    final List<Products1> manProducts = productsList
-        .where((category) => category.category == "men's clothing")
-        .toList();
-    return manProducts;
-  } else {
-    throw Exception('Failed to load album');
-  }
-}
-
-

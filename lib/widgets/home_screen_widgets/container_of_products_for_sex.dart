@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shop_app/model/products_data.dart';
+import 'package:flutter_shop_app/state_management/bloc_tab_bar/bloc_tab_bar.dart';
 
 class ContainerProductsList extends StatelessWidget {
   const ContainerProductsList({

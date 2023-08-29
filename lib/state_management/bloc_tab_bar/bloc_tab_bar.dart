@@ -7,16 +7,17 @@ part 'bloc_tab_bar_event.dart';
 part 'bloc_tab_bar_state.dart';
 
 class TabBarBloc extends Bloc<TabBarEvent, TabBarState> {
-  TabBarBloc() : super(TabBarState(categoryProducts: [])) {
-    on<TabBarEvent>((event, emit) async {
+  final ProductsApi _api;
 
+  TabBarBloc(this._api) : super(TabBarState(categoryProducts: [])) {
+    on<TabBarEvent>((event, emit) async {
       if (event is WomanTabBarEvent) {
-        final List<Products1> womanResult = await fetchWomanProducts();
-        emit(TabBarState( categoryProducts: womanResult));
+        final List<Products1> womanResult = await _api.fetchWomanProducts();
+        emit(TabBarState(categoryProducts: womanResult));
       }
       if (event is ManTabBarEvent) {
-        final List<Products1> manResult = await fetchManProducts();
-        emit(TabBarState( categoryProducts: manResult));
+        final List<Products1> manResult = await _api.fetchManProducts();
+        emit(TabBarState(categoryProducts: manResult));
       }
     });
     add(WomanTabBarEvent());
