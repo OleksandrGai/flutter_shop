@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_shop_app/state_management/language/bloc_locale/bloc_locale.dart';
-
 
 import 'package:flutter_shop_app/widgets/person_screen_widgets/expansion_tile.dart';
 
@@ -24,38 +22,42 @@ class PersonScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge),
           ),
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 14, right: 14),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 14, right: 14),
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    TextButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.transparent,
-                        side: BorderSide(
-                            color: Theme.of(context).unselectedWidgetColor),
-                        maximumSize: const Size(300, 50),
-                        minimumSize: const Size(260, 50),
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextButton(
+                        onPressed: () {
+                          ModalDialog().loginDialog(context);
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.logIn,
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.black,
+                        ),
                       ),
-                      child: Text(AppLocalizations.of(context)!.logIn,
-                          style: Theme.of(context).textTheme.titleLarge),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 7,
                     ),
-                    OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.transparent,
-                        side: BorderSide(
-                            color: Theme.of(context).unselectedWidgetColor),
-                        maximumSize: const Size(300, 50),
-                        minimumSize: const Size(260, 50),
-                      ),
-                      child: Text(
-                        AppLocalizations.of(context)!.signUp,
-                        style: Theme.of(context).textTheme.titleLarge,
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextButton(
+                        onPressed: () {
+                          ModalDialog().registrationDialog(context);
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.signUp,
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.black,
+                        ),
                       ),
                     ),
                     const Padding(
@@ -73,7 +75,8 @@ class PersonScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           ExpansionTileWidget(
-                            categoryName: AppLocalizations.of(context)!.settings,
+                            categoryName:
+                                AppLocalizations.of(context)!.settings,
                             icon: Icons.settings,
                             detailsWidget: const SettingsWidget(),
                           ),
@@ -84,7 +87,8 @@ class PersonScreen extends StatelessWidget {
                             detailsWidget: const InformationWidget(),
                           ),
                           ExpansionTileWidget(
-                            categoryName: AppLocalizations.of(context)!.contacts,
+                            categoryName:
+                                AppLocalizations.of(context)!.contacts,
                             icon: Icons.phone,
                             detailsWidget: const ContactsInformationWidget(),
                           ),
