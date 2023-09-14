@@ -7,11 +7,11 @@ import 'package:http/http.dart' as http;
 abstract class ProductsApi {
   factory ProductsApi() => _ProductsApiImpl();
 
-  Future<List<Products1>> fetchAllProducts();
+  Future<List<Product>> _fetchAllProducts();
 
-  Future<List<Products1>> fetchWomanProducts();
+  Future<List<Product>> fetchWomanProducts();
 
-  Future<List<Products1>> fetchManProducts();
+  Future<List<Product>> fetchManProducts();
 }
 
 class _ProductsApiImpl implements ProductsApi {
@@ -28,35 +28,27 @@ class _ProductsApiImpl implements ProductsApi {
   }
 
   @override
-  Future<List<Products1>> fetchAllProducts() async {
+  Future<List<Product>> _fetchAllProducts(
+      {bool Function(Product)? filter}) async {
     return _getRequest(Uri.parse('$_baseurl$_typesPath'), (json) {
       var res = json;
       return res
-          .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
+          .map((dynamic e) => Product.fromJson(e as Map<String, dynamic>))
+          .where(filter ?? (_) => true)
           .toList();
     });
   }
 
   @override
-  Future<List<Products1>> fetchManProducts() async {
-    return _getRequest(Uri.parse('$_baseurl$_typesPath'), (json) {
-      var res = json;
-      return res
-          .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
-          .where((category) => category.category == "men's clothing")
-          .toList();
-    });
+  Future<List<Product>> fetchManProducts() async {
+    return _fetchAllProducts(
+        filter: (category) => category.category == "men's clothing");
   }
 
   @override
-  Future<List<Products1>> fetchWomanProducts() {
-    return _getRequest(Uri.parse('$_baseurl$_typesPath'), (json) {
-      var res = json;
-      return res
-          .map((dynamic e) => Products1.fromJson(e as Map<String, dynamic>))
-          .where((category) => category.category == "women's clothing")
-          .toList();
-    });
+  Future<List<Product>> fetchWomanProducts() {
+    return _fetchAllProducts(
+        filter: (category) => category.category == "women's clothing");
   }
 }
 

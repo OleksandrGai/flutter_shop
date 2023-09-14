@@ -20,7 +20,7 @@ class CustomerHomeScreen extends StatelessWidget {
     required this.productsCategory,
   });
 
-  final List<Products1> productsCategory;
+  final List<Product> productsCategory;
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -11,14 +11,14 @@ class TabBarBloc extends Bloc<TabBarEvent, TabBarState> {
 
   TabBarBloc(this._api) : super(TabBarState(categoryProducts: [])) {
     on<TabBarEvent>((event, emit) async {
+      List<Product>? result;
       if (event is WomanTabBarEvent) {
-        final List<Products1> womanResult = await _api.fetchWomanProducts();
-        emit(TabBarState(categoryProducts: womanResult));
+        result = await _api.fetchWomanProducts();
+      } else if (event is ManTabBarEvent) {
+        result = await _api.fetchManProducts();
       }
-      if (event is ManTabBarEvent) {
-        final List<Products1> manResult = await _api.fetchManProducts();
-        emit(TabBarState(categoryProducts: manResult));
-      }
+      assert(result != null, "Unexpected TabBarEvent");
+      emit(TabBarState(categoryProducts: result!));
     });
     add(WomanTabBarEvent());
   }

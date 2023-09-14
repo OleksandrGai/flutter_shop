@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../model/products_data.dart';
 
 class ProductInherit extends InheritedWidget {
-  final List<Products1> productsCategory;
+  final List<Product> productsCategory;
 
   const ProductInherit({
     Key? key,

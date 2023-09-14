@@ -74,7 +74,7 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
         initialRoutes: _routingWidgetBuilderMap.keys.toList(),
         onGenerateRoute: (settings) {
           if (settings.name == ProductsDetails.routeName) {
-            final args = settings.arguments as Products1;
+            final args = settings.arguments as Product;
             return MaterialPageRoute(
               builder: (context) {
                 return ProductsDetails(

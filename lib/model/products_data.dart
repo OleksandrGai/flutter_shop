@@ -1,5 +1,5 @@
-class Products1 {
-  const Products1({
+class Product {
+  const Product({
     required this.id,
     required this.title,
     required this.price,
@@ -15,8 +15,8 @@ class Products1 {
   final String? category;
   final String image;
 
-  factory Products1.fromJson(Map<String, dynamic> json) {
-    return Products1(
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
       id: json['id'],
       title: json['title'],
       price: json['price'].toString(),

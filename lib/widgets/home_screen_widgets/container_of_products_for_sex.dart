@@ -33,7 +33,7 @@ class ContainerProductsList extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           ProductsDetails.routeName,
-                          arguments: Products1(
+                          arguments: Product(
                             id: product[index].id,
                             description: product[index].description,
                             image: product[index].image,
