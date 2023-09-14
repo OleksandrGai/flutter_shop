@@ -15,52 +15,56 @@ class ConsumerTabBar extends StatelessWidget {
     return BlocProvider<TabBarBloc>(
       create: (_) => TabBarBloc(ProductsApi()),
       child: BlocBuilder<TabBarBloc, TabBarState>(builder: (context, state) {
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 14, right: 14),
-              child: TabBar(
-                dividerColor: Theme.of(context).unselectedWidgetColor,
-                labelColor: Theme.of(context).primaryColor,
-                tabs: _tabs,
-                indicatorColor: Theme.of(context).unselectedWidgetColor,
-                onTap: (int tabIndex) {
-                  if (tabIndex == 0) {
-                    context.read<TabBarBloc>().add(
-                          WomanTabBarEvent(),
-                        );
-                  }
-                  if (tabIndex == 1) {
-                    context.read<TabBarBloc>().add(
-                          ManTabBarEvent(),
-                        );
-                  }
-                },
+        return DefaultTabController(
+          length: 2,
+          initialIndex: 0,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 14, right: 14),
+                child: TabBar(
+                  dividerColor: Theme.of(context).unselectedWidgetColor,
+                  labelColor: Theme.of(context).primaryColor,
+                  tabs: _tabs,
+                  indicatorColor: Theme.of(context).unselectedWidgetColor,
+                  onTap: (int tabIndex) {
+                    if (tabIndex == 0) {
+                      context.read<TabBarBloc>().add(
+                            WomanTabBarEvent(),
+                          );
+                    }
+                    if (tabIndex == 1) {
+                      context.read<TabBarBloc>().add(
+                            ManTabBarEvent(),
+                          );
+                    }
+                  },
+                ),
               ),
-            ),
-            SizedBox(
-              height: 700,
-              child: TabBarView(
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  CustomerHomeScreen(
-                    firstImage: 'lib/images/woman.jpeg',
-                    secondImage: 'lib/images/second.jpeg',
-                    thirdImage: 'lib/images/third.jpeg',
-                    fourthImage: 'lib/images/fourth.jpeg',
-                    productsCategory: state.categoryProducts,
-                  ),
-                  CustomerHomeScreen(
-                    firstImage: 'lib/images/first.jpeg',
-                    secondImage: 'lib/images/second.jpeg',
-                    thirdImage: 'lib/images/third.jpeg',
-                    fourthImage: 'lib/images/fourth.jpeg',
-                    productsCategory: state.categoryProducts,
-                  ),
-                ],
+              SizedBox(
+                height: 700,
+                child: TabBarView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    CustomerHomeScreen(
+                      firstImage: 'lib/images/woman.jpeg',
+                      secondImage: 'lib/images/second.jpeg',
+                      thirdImage: 'lib/images/third.jpeg',
+                      fourthImage: 'lib/images/fourth.jpeg',
+                      productsCategory: state.categoryProducts,
+                    ),
+                    CustomerHomeScreen(
+                      firstImage: 'lib/images/first.jpeg',
+                      secondImage: 'lib/images/second.jpeg',
+                      thirdImage: 'lib/images/third.jpeg',
+                      fourthImage: 'lib/images/fourth.jpeg',
+                      productsCategory: state.categoryProducts,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       }),
     );

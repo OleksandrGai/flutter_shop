@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop_app/model/products_data.dart';
 import 'package:flutter_shop_app/screens/home_screen_directory/home_screen.dart';
+import 'package:flutter_shop_app/widgets/home_screen_widgets/products_details.dart';
 
 import '../screens/basket_screen_directory/basket_screen.dart';
 import '../screens/favorits_screen_directory/favorite_screen.dart';
@@ -18,7 +20,9 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
   var _currentIndex = 0;
 
   late final _routingWidgetBuilderMap = <String, WidgetBuilder>{
-    HomeScreen.routeName: (_) => HomeScreen(onSearchClicked: onSearchClicked,),
+    HomeScreen.routeName: (_) => HomeScreen(
+          onSearchClicked: onSearchClicked,
+        ),
     ListOfCategoriesScreen.routeName: (_) => const ListOfCategoriesScreen(),
     SearchScreen.routeName: (_) => const SearchScreen(),
     FavoriteScreen.routeName: (_) => const FavoriteScreen(),
@@ -69,11 +73,25 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
         selectedIndex: _currentIndex,
         initialRoutes: _routingWidgetBuilderMap.keys.toList(),
         onGenerateRoute: (settings) {
+          if (settings.name == ProductsDetails.routeName) {
+            final args = settings.arguments as Products1;
+            return MaterialPageRoute(
+              builder: (context) {
+                return ProductsDetails(
+                  id: args.id,
+                  description: args.description,
+                  title: args.title,
+                  price: args.price.toString(),
+                  image: args.image,
+                );
+              },
+            );
+          }
           return MaterialPageRoute(
-            builder: _routingWidgetBuilderMap[settings.name] ?? (_) => Container(),
+            builder:
+                _routingWidgetBuilderMap[settings.name] ?? (_) => Container(),
           );
         },
-
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

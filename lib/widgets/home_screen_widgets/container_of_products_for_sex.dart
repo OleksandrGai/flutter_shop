@@ -1,47 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_shop_app/model/products_data.dart';
-import 'package:flutter_shop_app/state_management/bloc_tab_bar/bloc_tab_bar.dart';
+import 'package:flutter_shop_app/widgets/home_screen_widgets/products_details.dart';
+
+import '../../model/products_data.dart';
+import '../../state_management/product_inherit/product_inherited_widget.dart';
 
 class ContainerProductsList extends StatelessWidget {
   const ContainerProductsList({
     super.key,
-    required this.productsCategory,
   });
-
-  final List<Products1> productsCategory;
 
   @override
   Widget build(BuildContext context) {
+    final product = context
+        .dependOnInheritedWidgetOfExactType<ProductInherit>()
+        ?.productsCategory;
     return SizedBox(
-      height: 150,
-      width: 120,
+      height: 200,
+      width: 150,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: productsCategory.length ~/3,
+        itemCount: product!.length ~/ 3,
         itemBuilder: (context, index) {
-          return Column(
+          return Stack(
+            alignment: AlignmentDirectional.topEnd,
             children: [
-              Image.network(
-                productsCategory[index].image,
-                height: 120,
-                width: 120,
-                fit: BoxFit.fill,
-              ),
-              Flexible(
-                child: SizedBox(
-                  width: 115,
-                  child: Text(
-                    maxLines: 10,
-                    productsCategory[index].title,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, top: 14),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          ProductsDetails.routeName,
+                          arguments: Products1(
+                            id: product[index].id,
+                            description: product[index].description,
+                            image: product[index].image,
+                            title: product[index].title,
+                            price: '${product[index].price.toString()}\$',
+                          ),
+                        );
+                      },
+                      child: Image.network(
+                        product[index].image,
+                        height: 140,
+                        width: 130,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                        width: 115,
+                        child: Text(
+                          maxLines: 10,
+                          product[index].title,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '${product[index].price.toString()}\$',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
                 ),
               ),
-              Text(
-                '${productsCategory![index].price.toString()}\$',
-                style: Theme.of(context).textTheme.bodySmall,
+              IconButton(
+                iconSize: 30,
+                onPressed: () {},
+                icon: const Icon(Icons.favorite_border_outlined),
               ),
             ],
           );
