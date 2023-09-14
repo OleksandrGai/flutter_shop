@@ -42,16 +42,16 @@ class BasketScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text('Ввійти',
-                        style: Theme.of(context).textTheme.titleLarge),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.transparent,
-                      side: BorderSide(
-                          color: Theme.of(context).unselectedWidgetColor),
-                      maximumSize: const Size(300, 50),
-                      minimumSize: const Size(260, 50),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: TextButton(
+                      onPressed: () {
+                        ModalDialog().loginDialog(context);
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.black,),
+                      child: const Text('Ввійти',
+                          style: TextStyle(color:Colors.white,fontSize: 18)),
                     ),
                   ),
                 ),
