@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../widgets/home_screen_widgets/text_field.dart';
 import '../../widgets/home_screen_widgets/consumer_tab_bar.dart';
-import '../search_screen_directory/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';

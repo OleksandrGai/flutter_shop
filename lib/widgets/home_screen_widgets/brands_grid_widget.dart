@@ -25,5 +25,6 @@ class BrandsGridWidget extends StatelessWidget {
             // );
           }),
     );
+
   }
 }

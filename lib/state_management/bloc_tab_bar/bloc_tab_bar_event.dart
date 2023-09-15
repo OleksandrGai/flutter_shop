@@ -1,7 +1,7 @@
 part of 'bloc_tab_bar.dart';
 
-class ConsumerTabBarEvent {
-  ConsumerTabBarEvent({required this.tabIndex});
+class TabBarEvent {}
 
-  final int tabIndex;
-}
+class WomanTabBarEvent extends TabBarEvent {}
+
+class ManTabBarEvent extends TabBarEvent {}

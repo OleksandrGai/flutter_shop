@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop_app/networking/products_api.dart';
 import 'package:flutter_shop_app/widgets/search_screen_widgets/text_field_search_screen.dart';
 
 import '../../model/products_data.dart';
@@ -13,11 +14,11 @@ class TabBarSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TabBarBloc>(
-      create: (_) => TabBarBloc(),
+      create: (_) => TabBarBloc(ProductsApi()),
       child: BlocBuilder<TabBarBloc, TabBarState>(builder: (context, state) {
         return DefaultTabController(
           length: 3,
-          initialIndex: state.index,
+          initialIndex: 0,
           child: Column(
             children: [
               Padding(
@@ -29,7 +30,7 @@ class TabBarSearchScreen extends StatelessWidget {
                   indicatorColor: Theme.of(context).unselectedWidgetColor,
                   onTap: (int tabIndex) {
                     context.read<TabBarBloc>().add(
-                          ConsumerTabBarEvent(tabIndex: tabIndex),
+                          WomanTabBarEvent(),
                         );
                   },
                 ),
