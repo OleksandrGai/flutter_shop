@@ -11,5 +11,19 @@
   "aboutApp": "About app",
   "contacts": "Contacts",
   "phone": "Phone",
-  "address": "Address"
+  "address": "Address",
+  "basket": "Basket",
+  "emptyBasket": "Your basket is empty",
+  "letsChose": "Let's go and choose something!",
+  "haveAccount": "You already have an account?",
+  "loginPlease": "Log in to sync your shopping cart across your different devices.",
+  "enterEmail": "or enter your e-mail",
+  "email": "e-mail",
+  "password": "password",
+  "forgotPassword": "Forgot your password?",
+  "agreeWith": "By using the application, you agree to the Store Rules",
+  "rules": "Store Rules",
+  "validation": "*minimum 8 characters, including one capital letter",
+  "commercialInfo":"I want to receive commercial information from the store to the specified email address",
+  "makeAccount":"Create an account"
 }

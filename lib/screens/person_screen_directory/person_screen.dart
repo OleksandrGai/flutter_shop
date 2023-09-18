@@ -6,6 +6,8 @@ import 'package:flutter_shop_app/state_management/language/bloc_locale/bloc_loca
 
 import 'package:flutter_shop_app/widgets/person_screen_widgets/expansion_tile.dart';
 
+import '../../widgets/favorite_screen_widgets/alert_dialogs_widget.dart';
+
 class PersonScreen extends StatelessWidget {
 
   static const String routeName = '/personScreen';
