@@ -11,5 +11,13 @@
   "aboutApp": "About app",
   "contacts": "Contacts",
   "phone": "Phone",
-  "address": "Address"
+  "address": "Address",
+
+  "favorite": "Favorite",
+  "addProducts" : "Add products to the bookmark using",
+  "bookmark": "Bookmark my choice is empty",
+  "haveAccount": "Already have an account",
+  "logInFavouriteScreen": "Sign in to this account to synchronize the My Choice bookmark across your various devices.",
+  "noAccount": "You still don't have an account?",
+  "advantageOfSpecialOffers": "Register and take advantage of special offers for customers with an account"
 }
