@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/favorite_screen_widgets/alert_dialogs_widget.dart';
+
 class BasketScreen extends StatelessWidget {
 
   static const String routeName = '/basketScreen';

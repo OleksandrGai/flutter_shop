@@ -36,11 +36,11 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
           const SizedBox(
             height: 20,
           ),
-          Image.asset(secondImage),
+          Image.asset(widget.secondImage),
           const SizedBox(
             height: 20,
           ),
-          ProductInherit(productsCategory: productsCategory, child: const ContainerProductsList()),
+          ProductInherit(productsCategory: widget.productsCategory, child: const ContainerProductsList()),
           const SizedBox(
             height: 10,
           ),
@@ -55,11 +55,11 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
           const SizedBox(
             height: 20,
           ),
-          Image.asset(thirdImage),
+          Image.asset(widget.thirdImage),
           const SizedBox(
             height: 20,
           ),
-          Image.asset(fourthImage),
+          Image.asset(widget.fourthImage),
         ],
       ),
     );
