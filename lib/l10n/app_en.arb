@@ -19,5 +19,11 @@
   "haveAccount": "Already have an account",
   "logInFavouriteScreen": "Sign in to this account to synchronize the My Choice bookmark across your various devices.",
   "noAccount": "You still don't have an account?",
-  "advantageOfSpecialOffers": "Register and take advantage of special offers for customers with an account"
+  "advantageOfSpecialOffers": "Register and take advantage of special offers for customers with an account",
+
+  "size":"Size: ",
+  "color": "Color: ",
+  "removeFromFavorite":"Product removed from My selection",
+  "addToFavorite":"The product has been added to the My selection bookmark",
+  "inBasket": "In the basket"
 }

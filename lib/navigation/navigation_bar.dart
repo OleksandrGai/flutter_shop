@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shop_app/model/products_data.dart';
 import 'package:flutter_shop_app/screens/home_screen_directory/home_screen.dart';
 import 'package:flutter_shop_app/widgets/home_screen_widgets/products_details.dart';
@@ -8,6 +9,7 @@ import '../screens/favorits_screen_directory/favorite_screen.dart';
 import '../screens/list_of_categories_screen_directory/list_of_categories_screen.dart';
 import '../screens/person_screen_directory/person_screen.dart';
 import '../screens/search_screen_directory/search_screen.dart';
+import '../state_management/bloc_favorite_screen/bloc_favorite_screen.dart';
 
 class MainBottomBarNavigation extends StatefulWidget {
   const MainBottomBarNavigation({super.key});
@@ -37,28 +39,51 @@ class MainBottomBarNavigationState extends State<MainBottomBarNavigation> {
     setState(() => _currentIndex = userTab);
   }
 
-  final _items = const <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
+  final _items = <BottomNavigationBarItem>[
+    const BottomNavigationBarItem(
       icon: Icon(Icons.home_outlined),
       label: '1',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.list_outlined),
       label: '1',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.search_outlined),
       label: '1',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.favorite_border_outlined),
+      icon: BlocBuilder<FavoriteScreenBloc, FavoriteScreenState>(
+          builder: (context, state) {
+        int productCount = state.favoriteList.length;
+        if (state.favoriteList.isEmpty) {
+          return const Icon(Icons.favorite_border_outlined);
+        } else {
+          return Stack(children: [
+            const Icon(Icons.favorite_border_outlined),
+            Container(
+              // padding: const EdgeInsets.only(left: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Colors.grey),
+              constraints: const BoxConstraints(
+                minHeight: 15,
+                maxWidth: 12,
+              ),
+              child: Text(
+                '$productCount',
+                style: TextStyle(fontSize: 15),
+              ),
+            )
+          ]);
+        }
+      }),
       label: '1',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.shopping_basket_outlined),
       label: '1',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(
         Icons.person,
       ),

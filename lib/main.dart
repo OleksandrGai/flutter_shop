@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:flutter_shop_app/state_management/bloc_favorite_screen/bloc_favorite_screen.dart';
 
 import 'package:flutter_shop_app/state_management/bloc_theme/bloc_theme.dart';
 import 'package:flutter_shop_app/state_management/language/bloc_locale/bloc_locale.dart';
@@ -25,6 +25,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<LanguageBloc>(
             create: (_) => LanguageBloc(),
+          ),
+          BlocProvider<FavoriteScreenBloc>(
+            create: (_) => FavoriteScreenBloc(),
           ),
         ],
         child: BlocProvider<SwitchThemeBloc>(
