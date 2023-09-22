@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop_app/model/products_data.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../state_management/bloc_favorite_screen/bloc_favorite_screen.dart';
 
 class ProductsDetails extends StatelessWidget {
   const ProductsDetails({
@@ -21,82 +26,96 @@ class ProductsDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.network(
-              image,
-              fit: BoxFit.fill,
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: const Icon(Icons.close),
+        child: BlocBuilder<FavoriteScreenBloc, FavoriteScreenState>(
+            builder: (context, state) {
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.network(
+                image,
+                fit: BoxFit.fill,
               ),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.share_outlined),
-              ),
-            ),
-            DraggableScrollableSheet(
-              initialChildSize: 0.22,
-              minChildSize: 0.22,
-              maxChildSize: 0.9,
-              builder: (context, controller) => Container(
-                color: Colors.grey.shade100,
-                child: ListView(
-                  controller: controller,
-                  children: [
-                    ScrollableSheet(
-                      title: title,
-                      price: price,
-                      description: description,
-                      id: id.toString(),
-                    ),
-                  ],
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.close),
                 ),
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  width: double.infinity,
-                  color: Colors.white,
-                  child: Row(
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.share_outlined),
+                ),
+              ),
+              DraggableScrollableSheet(
+                initialChildSize: 0.22,
+                minChildSize: 0.22,
+                maxChildSize: 0.9,
+                builder: (context, controller) => Container(
+                  color: Colors.grey.shade100,
+                  child: ListView(
+                    controller: controller,
                     children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 14, top: 10),
-                          child: TextButton(
-                            onPressed: () {},
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.black,
-                            ),
-                            child: const Text(
-                              'У кошик',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.favorite_border_outlined),
+                      ScrollableSheet(
+                        title: title,
+                        price: price,
+                        description: description,
+                        id: id.toString(),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 14, top: 10),
+                            child: TextButton(
+                              onPressed: () {},
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.black,
+                              ),
+                              child:  Text(
+                                AppLocalizations.of(context)!.inBasket,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            context.read<FavoriteScreenBloc>().add(AddProduct(
+                                product: Product(
+                                    id: id,
+                                    title: title,
+                                    price: price,
+                                    description: description,
+                                    image: image)));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(AppLocalizations.of(context)!.addToFavorite), duration: const Duration(seconds: 1)),
+                            );
+                          },
+                          icon: const Icon(Icons.favorite_border_outlined),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        }),
       ),
     );
   }
