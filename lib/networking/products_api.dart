@@ -7,11 +7,13 @@ import 'package:http/http.dart' as http;
 abstract class ProductsApi {
   factory ProductsApi() => _ProductsApiImpl();
 
-  Future<List<Product>> _fetchAllProducts();
+  Future<List<Product>> fetchAllProducts();
 
   Future<List<Product>> fetchWomanProducts();
 
   Future<List<Product>> fetchManProducts();
+
+  Future<List<Product>> fetchSearchProduct(List<Product> product);
 }
 
 class _ProductsApiImpl implements ProductsApi {
@@ -28,7 +30,7 @@ class _ProductsApiImpl implements ProductsApi {
   }
 
   @override
-  Future<List<Product>> _fetchAllProducts(
+  Future<List<Product>> fetchAllProducts(
       {bool Function(Product)? filter}) async {
     return _getRequest(Uri.parse('$_baseurl$_typesPath'), (json) {
       var res = json;
@@ -41,31 +43,19 @@ class _ProductsApiImpl implements ProductsApi {
 
   @override
   Future<List<Product>> fetchManProducts() async {
-    return _fetchAllProducts(
+    return fetchAllProducts(
         filter: (category) => category.category == "men's clothing");
   }
 
   @override
   Future<List<Product>> fetchWomanProducts() {
-    return _fetchAllProducts(
+    return fetchAllProducts(
         filter: (category) => category.category == "women's clothing");
   }
-}
 
-List<Products> listOfCategories = [
-  TestProducts('Взуття'),
-  TestProducts('Футболки'),
-  TestProducts('Штани'),
-  TestProducts('Куртки'),
-  TestProducts('Носки'),
-  TestProducts('Білизна'),
-  TestProducts('Аксесуари'),
-  TestProducts('Духи'),
-  TestProducts('Рушники'),
-  TestProducts('Сандалі'),
-  TestProducts('Лофери'),
-  TestProducts('Еспадрилі'),
-  TestProducts('Челсі'),
-  TestProducts('Леггинси'),
-  TestProducts('Спортивний одяг'),
-];
+  @override
+  Future<List<Product>> fetchSearchProduct(List<Product> product) {
+    return fetchAllProducts(
+        filter: (category) => category.category == (product.where((element) => element.category != null).toString()));
+  }
+}

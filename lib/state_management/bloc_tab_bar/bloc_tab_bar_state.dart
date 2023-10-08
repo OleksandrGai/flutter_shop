@@ -1,9 +1,14 @@
 part of 'bloc_tab_bar.dart';
 
-class TabBarState {
+class TabBarInitialState {
   final List<Product> categoryProducts;
 
-  TabBarState({
+  TabBarInitialState({
     required this.categoryProducts,
   });
+}
+
+class TabBarFilteredState extends TabBarInitialState{
+  TabBarFilteredState({required super.categoryProducts});
+
 }
