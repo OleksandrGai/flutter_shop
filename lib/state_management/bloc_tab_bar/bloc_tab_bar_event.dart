@@ -1,6 +1,6 @@
 part of 'bloc_tab_bar.dart';
 
-class TabBarEvent {}
+ class TabBarEvent {}
 
 class WomanTabBarEvent extends TabBarEvent {}
 

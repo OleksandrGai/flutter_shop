@@ -16,7 +16,8 @@ class ListOfCategoriesScreen extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(left: 14, right: 14),
-              child: CategoriesListTabBar(),
+             // child:
+              //CategoriesListTabBar(),
             ),
           ],
         ),
