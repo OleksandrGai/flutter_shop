@@ -7,13 +7,17 @@ import 'package:http/http.dart' as http;
 abstract class ProductsApi {
   factory ProductsApi() => _ProductsApiImpl();
 
-  Future<List<Product>> fetchAllProducts();
+  Future<List<Product>> fetchProducts({ProductsCategory? category, String? searchQuery});
 
-  Future<List<Product>> fetchWomanProducts();
+}
 
-  Future<List<Product>> fetchManProducts();
+enum ProductsCategory {
+  man("men's clothing"),
+  woman("women's clothing");
 
-  Future<List<Product>> fetchSearchProduct(List<Product> product);
+  const ProductsCategory(this._categoryDetails);
+
+  final String _categoryDetails;
 }
 
 class _ProductsApiImpl implements ProductsApi {
@@ -30,32 +34,19 @@ class _ProductsApiImpl implements ProductsApi {
   }
 
   @override
-  Future<List<Product>> fetchAllProducts(
-      {bool Function(Product)? filter}) async {
+  Future<List<Product>> fetchProducts(
+      {ProductsCategory? category, String? searchQuery}) {
     return _getRequest(Uri.parse('$_baseurl$_typesPath'), (json) {
       var res = json;
       return res
           .map((dynamic e) => Product.fromJson(e as Map<String, dynamic>))
-          .where(filter ?? (_) => true)
+          .where((element) => category == null
+              ? true
+              : element.category == category._categoryDetails)
+          .where((element) => searchQuery == null
+              ? true
+              : element.title.toLowerCase().contains(searchQuery))
           .toList();
     });
-  }
-
-  @override
-  Future<List<Product>> fetchManProducts() async {
-    return fetchAllProducts(
-        filter: (category) => category.category == "men's clothing");
-  }
-
-  @override
-  Future<List<Product>> fetchWomanProducts() {
-    return fetchAllProducts(
-        filter: (category) => category.category == "women's clothing");
-  }
-
-  @override
-  Future<List<Product>> fetchSearchProduct(List<Product> product) {
-    return fetchAllProducts(
-        filter: (category) => category.category == (product.where((element) => element.category != null).toString()));
   }
 }
